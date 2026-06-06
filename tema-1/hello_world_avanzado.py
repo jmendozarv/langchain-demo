@@ -19,10 +19,11 @@ plantilla = PromptTemplate(
 )
 
 # Crear una cadena de procesamiento utilizando LLMChain, que toma el modelo de lenguaje y la plantilla de prompt como entrada. La cadena se puede ejecutar con diferentes valores para la variable "nombre" para generar saludos personalizados.
-chain =  LLMChain(llm=chat, prompt=plantilla)
-
+# chain =  LLMChain(llm=chat, prompt=plantilla)
+chain = plantilla | chat
 # Ejecutar la cadena de procesamiento con un valor específico para la variable "nombre". En este caso, se le pide al modelo que salude a "Juan". El resultado será un saludo creativo generado por el modelo de lenguaje.
-resultado = chain.run(nombre="Juan")
+# resultado = chain.run(nombre="Juan")
+resultado = chain.invoke({"nombre":"Juan"}) 
 
 # Imprimir el resultado del saludo generado por el modelo de lenguaje.
-print(resultado)
+print(resultado.content)
