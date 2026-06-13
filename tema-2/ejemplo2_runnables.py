@@ -105,15 +105,12 @@ parallel_analysis = RunnableParallel({
 # La cadena completa
 chain = reprocessor | parallel_analysis | merger_results
 
-# Prueba con diferentes textos
-textos_prueba = [
-    "¡Me encanta este producto! Funciona perfectamente y llegó muy rápido.",
-    "El servicio al cliente fue terrible, nadie me ayudó con mi problema.",
-    "El clima está nublado hoy, probablemente llueva más tarde."
+review_batch = [
+    "EXcelente producto , muy satisfecho con la compra",
+    "Terrible calidad , no lo recomiendo para nada",
+    "Esta bien , cumple su funcion basica pero nada especial"
 ]
 
-for texto in textos_prueba:
-    resultado = chain.invoke(texto)
-    print(f"Texto: {texto}")
-    print(f"Resultado: {resultado}")
-    print("-" * 50)
+resultado_batch = chain.batch(review_batch)
+
+print(resultado_batch)
