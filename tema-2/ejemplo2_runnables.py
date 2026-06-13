@@ -47,6 +47,9 @@ Devuelve solo la oración final.
 ## Reto: ¿Podrías mejorar este prompt para obtener mejores resúmenes?
 
 
+summary_branch = RunnableLambda(generate_summary)
+
+
 # 4. Analizador de sentimientos
 # Crear una función que analice el sentimiento y devuelva JSON estructurado.
 
@@ -72,6 +75,9 @@ def analyze_sentiment(text):
 # asegurando que el programa continúe funcionando sin interrupciones.
 
 
+sentiment_branch = RunnableLambda(analyze_sentiment)
+
+
 # 5. Función de Combinación
 #
 # Objetivo: Unificar los resultados de resumen y análisis de sentimientos.
@@ -84,27 +90,20 @@ def merge_results(data):
         "razon": data["sentimiento_data"]["razon"]
     }
 
-# 6. Función de Procesamiento Principal
-#
-# Objetivo: Coodinar el análisis completo (resumen + sentimientos).
-def process_one(t):
-    resumen = generate_summary(t)  # Llamada 1 al LLM
-    sentimiento_data = analyze_sentiment(t)  # Llamada 2 al LLM
-    return merge_results({
-        "resumen": resumen,
-        "sentimiento_data": sentimiento_data
-    })
+merger_results = RunnableLambda(merge_results)
 
+parallel_analysis = RunnableParallel({
+    "resumen": summary_branch,
+    "sentimiento": summary_branch,
+})
 
-# Convertir en Runnable
-process = RunnableLambda(process_one)
 
 # 7. Construcción de la Cadena Final
 #
 # Objetivo: Conectar todos los componentes usando LCEL.
 
 # La cadena completa
-chain = reprocessor | process
+chain = reprocessor | parallel_analysis | merger_results
 
 # Prueba con diferentes textos
 textos_prueba = [
