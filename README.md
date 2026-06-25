@@ -62,3 +62,13 @@ from langchain_community.vectorstores import FAISS    # Herramienta de terceros
 
 
 Esta estructura te ayuda a entender qué está pasando bajo el capó y te permite hacer instalaciones más selectivas según tus necesidades.
+
+## Recordar: 
+La modularización de LangChain es clave para su flexibilidad y escalabilidad. Comprender esta arquitectura te permitirá navegar mejor por la documentación, elegir las herramientas adecuadas para tus proyectos y contribuir al ecosistema si lo deseas.
+
+
+ChatPromptTemplate.from_messages([
+    ("system", "Instrucciones base del asistente"),    # Configuración
+    ("human", "Contenido del usuario + historial"),   # Datos de entrada
+    ("assistant", "Respuesta anterior (opcional)")    # Para few-shot examples
+])
