@@ -9,4 +9,4 @@ class AnalisisCV(BaseModel):
     experiencia_relevante:str  = Field(description="Resumen conciso de la experiencia mas relevante para el puesto especifico.")
     fortalezas: list[str] = Field(description="3-5 princicpales fortalezas del candidato basadas en su perfil.")
     areas_mejora: list[str] = Field(description="2-4 areas donde le candidato podria desarrollarse o mejorar.")
-    porcentaje_ajust: int = Field(description="Porcentaje de ajuste al puesto(0-100) basado en la experiencia , habilidades y formacion.",ge=0,le=100)
+    porcentaje_ajuste: int = Field(description="Porcentaje de ajuste al puesto(0-100) basado en la experiencia , habilidades y formacion.",ge=0,le=100)
