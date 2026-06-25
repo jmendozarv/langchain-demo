@@ -7,7 +7,7 @@ def extraer_texto_pdf(archivo_pdf):
         texto_completo = ""
 
         for numero_pagina , pagina in enumerate(pdf_reader.pages,1):
-            texto_pagina = pagina.extractText()
+            texto_pagina = pagina.extract_text() or ""
             if  texto_pagina.strip() :
                 texto_completo += f"\n--- PAGINA {numero_pagina} ---\n"
                 texto_completo += texto_pagina + "\n"

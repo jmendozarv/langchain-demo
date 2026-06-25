@@ -72,3 +72,6 @@ ChatPromptTemplate.from_messages([
     ("human", "Contenido del usuario + historial"),   # Datos de entrada
     ("assistant", "Respuesta anterior (opcional)")    # Para few-shot examples
 ])
+
+## Conclusión
+**PydanticOutputParser** sigue siendo una herramienta valiosa para obtener structured output en LangChain. Aunque requiere más código que los métodos modernos, te da control total sobre el proceso y funciona con cualquier modelo de lenguaje. Es especialmente útil cuando necesitas validaciones complejas o trabajas con modelos que no soportan function calling nativo.
